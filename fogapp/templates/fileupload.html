@@ -1,0 +1,78 @@
+{% load static %}
+<html>
+<head>
+    <title>
+        File Upload
+    </title>
+    <link rel="stylesheet" href="{% static 'css/fileupload.css' %}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
+
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light" style="background-color : #39D2B4; font-color: white;">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="{% url 'home'%}">Home</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="#">View Files</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="#">Response</a>
+                </li>
+                <li class="nav-item float-right">
+                    <a class="nav-link active" href="{% url 'logout'%}">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<div class="container" style="margin-top: 5%;">
+    <div class="card">
+        <div class="card-body">
+        <form method="POST" action="{% url 'savefile' %}">{% csrf_token %}
+                <h1> logged in as {{ username }}</h1>
+                <center><h3 style="margin-top: 20%;">Upload files</h3></center>
+                <div class="input-file-container" style="margin-top: 40%;">
+                    <input class="input-file" id="my-file" name="my-file" type="file">
+                    <label tabindex="0" for="my-file" class="input-file-trigger">Select a file...</label>
+                </div>
+                <p class="file-return"></p>
+                <input class="input-file-trigger" style="margin-top: 20%;" type="submit" value="Submit">
+            </form>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+   document.querySelector("html").classList.add('js');
+
+    var fileInput  = document.querySelector( ".input-file" ),
+        button     = document.querySelector( ".input-file-trigger" ),
+        the_return = document.querySelector(".file-return");
+
+    button.addEventListener( "keydown", function( event ) {
+        if ( event.keyCode == 13 || event.keyCode == 32 ) {
+            fileInput.focus();
+        }
+    });
+    button.addEventListener( "click", function( event ) {
+       fileInput.focus();
+       return false;
+    });
+    fileInput.addEventListener( "change", function( event ) {
+        the_return.innerHTML = this.value;
+    });
+
+
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8"
+        crossorigin="anonymous"></script>
+</body>
+</html>

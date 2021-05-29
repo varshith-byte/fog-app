@@ -1,0 +1,37 @@
+{% load static %}
+
+
+<html lang="en">
+<head>
+
+      <meta charset="UTF-8">
+
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Table</title>
+
+        <link rel="stylesheet" href="{% static 'css/table.css' %}">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    </head>
+
+    <body>
+<table class="styled-table">
+    <thead>
+        <tr>
+            <th>Filename</th>
+            <th>FogRequest</th>
+            <th>CloudRequest</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for file in files %}
+        <tr>
+            <td>{{file.file}}</td>
+            <td>  </td>
+            <td>  </td>
+        </tr>
+    {%endfor%}
+    </tbody>
+</table>
+    </body>
+</html>
